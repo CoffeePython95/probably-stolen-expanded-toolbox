@@ -69,6 +69,9 @@ if (Test-Path $dist) {
 New-Item -ItemType Directory -Force -Path $dist | Out-Null
 Copy-Item $assembly $dist
 Copy-Item $manifestPath $dist
+if (Test-Path (Join-Path $root "README.md")) {
+    Copy-Item (Join-Path $root "README.md") $dist
+}
 
 Write-Host "Package: $dist"
 
