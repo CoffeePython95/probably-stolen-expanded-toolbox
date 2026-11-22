@@ -6,7 +6,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $root = $PSScriptRoot
-$project = Join-Path $root "ToolboxExtraRow.csproj"
+$project = Join-Path $root "ExpandedToolbox.csproj"
 $manifestPath = Join-Path $root "manifest.xml"
 
 if (-not $GameDir) {
@@ -50,18 +50,18 @@ if (-not $Dotnet -or -not (Test-Path $Dotnet)) {
     throw "dotnet was not found. Install the .NET 8 SDK or pass -Dotnet `"<path to dotnet.exe>`"."
 }
 
-Write-Host "Building ToolboxExtraRow..."
+Write-Host "Building Expanded Toolbox..."
 & $Dotnet build $project -c Release --nologo "-p:GameDir=$GameDir"
 if ($LASTEXITCODE -ne 0) {
     throw "dotnet build failed with exit code $LASTEXITCODE."
 }
 
-$assembly = Join-Path $root "bin\Release\netstandard2.1\ToolboxExtraRow.dll"
+$assembly = Join-Path $root "bin\Release\netstandard2.1\ExpandedToolbox.dll"
 if (-not (Test-Path $assembly)) {
     throw "Build succeeded but '$assembly' was not produced."
 }
 
-$dist = Join-Path $root "dist\ToolboxExtraRow"
+$dist = Join-Path $root "dist\ExpandedToolbox"
 if (Test-Path $dist) {
     Remove-Item $dist -Recurse -Force
 }
@@ -76,7 +76,7 @@ if (Test-Path (Join-Path $root "README.md")) {
 Write-Host "Package: $dist"
 
 if ($Install) {
-    $target = Join-Path $GameDir "Mods\ToolboxExtraRow"
+    $target = Join-Path $GameDir "Mods\ExpandedToolbox"
     if (Test-Path $target) {
         Remove-Item $target -Recurse -Force
     }
@@ -84,5 +84,5 @@ if ($Install) {
     New-Item -ItemType Directory -Force -Path $target | Out-Null
     Copy-Item (Join-Path $dist "*") $target -Recurse
     Write-Host "Installed to: $target"
-    Write-Host "Enable/trust 'Toolbox Extra Row' in the Mods screen, then restart the game."
+    Write-Host "Enable/trust 'Expanded Toolbox' in the Mods screen, then restart the game."
 }

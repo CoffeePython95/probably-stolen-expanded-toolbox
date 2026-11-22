@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Manifest>
-  <ID>toolbox_extra_row</ID>
-  <Name>Toolbox Extra Row</Name>
+  <ID>expanded_toolbox</ID>
+  <Name>Expanded Toolbox</Name>
   <Author>PtrkPtrk</Author>
   <ModVersion>0.1.0</ModVersion>
   <Description>Adds a fourth row of three slots to the toolbox. The new slots start locked and are unlocked with scrap metal like the vanilla ones. Slots 10, 11 and 12 are bound to 0, - and = by default. Existing saves keep their unlocked slots and gain the three new locked slots.</Description>
@@ -12,7 +12,7 @@
 
   <Prerequisites />
   <Assemblies>
-    <Assembly>ToolboxExtraRow.dll</Assembly>
+    <Assembly>ExpandedToolbox.dll</Assembly>
   </Assemblies>
   <Capabilities />
 </Manifest>

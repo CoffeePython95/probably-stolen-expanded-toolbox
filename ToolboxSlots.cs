@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ToolboxExtraRow;
+namespace ExpandedToolbox;
 
 /// <summary>
 /// Shared constants and UI construction for the expanded toolbox.

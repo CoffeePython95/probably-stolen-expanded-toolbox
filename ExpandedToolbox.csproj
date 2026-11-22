@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>ToolboxExtraRow</AssemblyName>
-    <RootNamespace>ToolboxExtraRow</RootNamespace>
+    <AssemblyName>ExpandedToolbox</AssemblyName>
+    <RootNamespace>ExpandedToolbox</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>

@@ -1,6 +1,6 @@
 using System;
 
-namespace ToolboxExtraRow;
+namespace ExpandedToolbox;
 
 /// <summary>
 /// Adds a fourth row to the vanilla toolbox and binds the new slots to
@@ -8,7 +8,7 @@ namespace ToolboxExtraRow;
 /// </summary>
 public sealed class ModEntry : IMod
 {
-    internal const string ModId = "toolbox_extra_row";
+    internal const string ModId = "expanded_toolbox";
 
     internal static bool Enabled { get; private set; }
 
@@ -36,7 +36,7 @@ public sealed class ModEntry : IMod
         }
 
         Enabled = true;
-        Log.Log("ToolboxExtraRow enabled; the toolbox now has 12 slots (keys 1-9, 0, - and =).");
+        Log.Log("Expanded Toolbox enabled; the toolbox now has 12 slots (keys 1-9, 0, - and =).");
     }
 
     public void OnDisable()
@@ -47,6 +47,6 @@ public sealed class ModEntry : IMod
         }
 
         Enabled = false;
-        Log.Log("ToolboxExtraRow disabled. Restart the game to restore the vanilla toolbox.");
+        Log.Log("Expanded Toolbox disabled. Restart the game to restore the vanilla toolbox.");
     }
 }

@@ -1,4 +1,4 @@
-# Toolbox Extra Row
+# Expanded Toolbox
 
 A **Probably Stolen** mod that gives the toolbox a fourth row of three slots.
 
@@ -19,7 +19,7 @@ From this folder:
 .\build.ps1 -GameDir "E:\SteamLibrary\steamapps\common\Probably Stolen" -Install
 ```
 
-Then enable/trust **Toolbox Extra Row** in the game's **Mods** screen and
+Then enable/trust **Expanded Toolbox** in the game's **Mods** screen and
 restart the game. Pass `-GameDir` if the game is installed elsewhere.
 
 Since the mod changes item creation, disabling it requires a restart.

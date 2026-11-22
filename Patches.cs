@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using HarmonyLib;
 
-namespace ToolboxExtraRow;
+namespace ExpandedToolbox;
 
 [HarmonyPatch(typeof(ToolboxHelper), nameof(ToolboxHelper.CreateToolboxWindow))]
 internal static class CreateToolboxWindowPatch
