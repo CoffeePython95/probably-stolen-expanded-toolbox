@@ -1,32 +1,15 @@
-# Probably Stolen mod template
+# Toolbox Extra Row
 
-Standalone starter workspace for a new **Probably Stolen** mod.
+A **Probably Stolen** mod that gives the toolbox a fourth row of three slots.
 
-## Contents
-
-```text
-BasicMod.csproj        minimal netstandard2.1 mod project
-BasicSettings.cs       ModConfig settings example
-ModEntry.cs            IMod entry point and lifecycle example
-manifest.xml           local/Workshop manifest
-build.ps1              build and local-install helper
-MODDING.md             game paths, APIs, data map, debugging, publishing
-docs\decompiled\       decompiled game source and reference mods
-reference\Outliner\    full Outliner source as a working example
-```
-
-The `reference/Outliner` copy is for reading and copying patterns; it is not
-compiled by `BasicMod.csproj`.
-
-## Rename the starter
-
-Replace these consistently:
-
-- `BasicMod` in the project file, namespace, and assembly name.
-- `basic_mod` in `manifest.xml` and `ModEntry.ModId`.
-- `BasicMod.dll` in `manifest.xml`.
-
-The display name, author, description, and version are in `manifest.xml`.
+- The original nine slots keep their keys: `1`-`9`.
+- The new slots 10, 11 and 12 are bound to `0`, `-` and `=` by default.
+  They can be rebound in the game's keybind options like any other action.
+- The three new slots start locked and are unlocked one at a time with scrap
+  metal, exactly like the vanilla toolbox slots.
+- Existing saves keep their unlocked slot count and simply gain the three new
+  locked slots at the bottom.
+- The toolbox tooltip and the "fully upgraded" sprite now use 12 slots.
 
 ## Build and install
 
@@ -36,23 +19,27 @@ From this folder:
 .\build.ps1 -GameDir "E:\SteamLibrary\steamapps\common\Probably Stolen" -Install
 ```
 
-Then enable and trust the mod in the game's **Mods** screen, and restart the
-game. Pass `-GameDir` if the game is installed elsewhere.
+Then enable/trust **Toolbox Extra Row** in the game's **Mods** screen and
+restart the game. Pass `-GameDir` if the game is installed elsewhere.
 
-## Read next
+Since the mod changes item creation, disabling it requires a restart.
 
-[`MODDING.md`](MODDING.md) covers:
+## Implementation notes
 
-- where the game, assemblies, local mods, configs, logs, and assets live
-- the manifest and loader contract
-- `IMod`, `ModHook`, Harmony, `ModConfig`, and asset/localization APIs
-- where item/customer/machine data lives in the game code
-- build, trust, debugging, and Workshop publishing
+The mod uses Harmony patches on `ToolboxHelper`:
 
-Useful starting points in the reference source:
+- `CreateToolboxWindow` builds a 12-slot, 3-column window instead of the
+  vanilla 9-slot one.
+- `GetUnlockedSlots` / `CanUpgradeToolbox` allow the unlock tag to grow from
+  9 to 12 while still reading old save values unchanged.
+- `CreateToolboxTooltip`, `UpdateToolboxSprite` and `HandleHotkeys` use the
+  expanded slot count and hotkey range.
+- `ToolboxHelper.Bindings` gets three extra `toolbox_slot_N` entries, so the
+  new keys appear in the normal keybind settings and persist through the
+  game's existing keybind save system.
 
-- `reference\Outliner\ModEntry.cs` — lifecycle
-- `reference\Outliner\ModSettings.cs` — settings
-- `reference\Outliner\Patches.cs` — Harmony examples
-- `reference\Outliner\OutlineController.cs` — outline lifecycle
-- `reference\Outliner\SearchPanel.cs` / `SettingsUI.cs` — native UI examples
+The extra panels are appended after the vanilla nine. The save system stores
+inventory nodes by traversal index, so old saves continue to map items to the
+same first nine slots; the new slots load empty.
+
+See `MODDING.md` for general Probably Stolen modding information.

@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>BasicMod</AssemblyName>
-    <RootNamespace>BasicMod</RootNamespace>
+    <AssemblyName>ToolboxExtraRow</AssemblyName>
+    <RootNamespace>ToolboxExtraRow</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <DebugType>none</DebugType>
     <Version>0.1.0</Version>
 
     <GameDir Condition="'$(GameDir)' == ''">E:\SteamLibrary\steamapps\common\Probably Stolen</GameDir>

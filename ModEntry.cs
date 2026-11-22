@@ -1,14 +1,14 @@
 using System;
 
-namespace BasicMod;
+namespace ToolboxExtraRow;
 
 /// <summary>
-/// Minimal built-in Probably Stolen mod entry point.
-/// Rename this namespace and the mod ID when starting a real mod.
+/// Adds a fourth row to the vanilla toolbox and binds the new slots to
+/// 0, - and =.
 /// </summary>
 public sealed class ModEntry : IMod
 {
-    internal const string ModId = "basic_mod";
+    internal const string ModId = "toolbox_extra_row";
 
     internal static bool Enabled { get; private set; }
 
@@ -17,7 +17,15 @@ public sealed class ModEntry : IMod
     public void Init(ModManifest manifest)
     {
         Log = new ModLog(manifest);
-        BasicSettings.Initialize();
+
+        try
+        {
+            ToolboxSlots.RegisterKeyBindings();
+        }
+        catch (Exception ex)
+        {
+            Log.Error("Could not register the extra toolbox keybinds: " + ex);
+        }
     }
 
     public void OnEnable()
@@ -28,32 +36,17 @@ public sealed class ModEntry : IMod
         }
 
         Enabled = true;
-        ModHook.OnGameLoadedNormal += OnGameLoaded;
-        Log.Log("BasicMod enabled.");
+        Log.Log("ToolboxExtraRow enabled; the toolbox now has 12 slots (keys 1-9, 0, - and =).");
     }
 
     public void OnDisable()
     {
-        Enabled = false;
-        ModHook.OnGameLoadedNormal -= OnGameLoaded;
-        Log.Log("BasicMod disabled.");
-    }
-
-    private static void OnGameLoaded()
-    {
-        if (!Enabled || !PlayerStore.HasInstance)
+        if (!Enabled)
         {
             return;
         }
 
-        try
-        {
-            int count = PlayerStore.Instance.FindAllItem().Count;
-            Log.Log("Store loaded; visible item count: " + count);
-        }
-        catch (Exception ex)
-        {
-            Log.Warning("Could not inspect the store: " + ex.Message);
-        }
+        Enabled = false;
+        Log.Log("ToolboxExtraRow disabled. Restart the game to restore the vanilla toolbox.");
     }
 }
