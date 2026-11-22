@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <ID>basic_mod</ID>
+  <Name>Basic Mod</Name>
+  <Author>YourName</Author>
+  <ModVersion>0.1.0</ModVersion>
+  <Description>Minimal Probably Stolen mod starter.</Description>
+
+  <GameVersions>
+    <Version>0.46D</Version>
+  </GameVersions>
+
+  <Prerequisites />
+  <Assemblies>
+    <Assembly>BasicMod.dll</Assembly>
+  </Assemblies>
+  <Capabilities />
+</Manifest>
