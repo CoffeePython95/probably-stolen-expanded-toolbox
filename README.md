@@ -74,6 +74,10 @@ uploaded to GitHub Releases.
 
 See [`RELEASING.md`](RELEASING.md) for the exact source and GitHub release flow.
 
+## License
+
+[MIT](LICENSE)
+
 ## Implementation notes
 
 The mod uses Harmony patches on `ToolboxHelper`:
