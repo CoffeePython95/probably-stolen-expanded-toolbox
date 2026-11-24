@@ -72,6 +72,9 @@ Copy-Item $manifestPath $dist
 if (Test-Path (Join-Path $root "README.md")) {
     Copy-Item (Join-Path $root "README.md") $dist
 }
+if (Test-Path (Join-Path $root "LICENSE")) {
+    Copy-Item (Join-Path $root "LICENSE") $dist
+}
 
 $version = ([xml](Get-Content $manifestPath -Raw)).Manifest.ModVersion
 $archive = Join-Path $root "dist\ExpandedToolbox-v$version.zip"
