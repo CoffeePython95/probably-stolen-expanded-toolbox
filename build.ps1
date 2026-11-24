@@ -73,7 +73,15 @@ if (Test-Path (Join-Path $root "README.md")) {
     Copy-Item (Join-Path $root "README.md") $dist
 }
 
+$version = ([xml](Get-Content $manifestPath -Raw)).Manifest.ModVersion
+$archive = Join-Path $root "dist\ExpandedToolbox-v$version.zip"
+if (Test-Path $archive) {
+    Remove-Item $archive -Force
+}
+Compress-Archive -Path $dist -DestinationPath $archive -CompressionLevel Optimal
+
 Write-Host "Package: $dist"
+Write-Host "Release archive: $archive"
 
 if ($Install) {
     $target = Join-Path $GameDir "Mods\ExpandedToolbox"
