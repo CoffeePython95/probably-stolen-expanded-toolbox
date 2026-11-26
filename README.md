@@ -67,33 +67,8 @@ Then enable/trust the mod in the game's **Mods** screen and restart. Pass
 `-GameDir` if the game is installed elsewhere.
 
 The build uses the game's own `Assembly-CSharp.dll`, so it cannot be compiled
-on a machine without the game installed. The release ZIP is built locally and
-uploaded to GitHub Releases.
-
-## Releasing
-
-See [`RELEASING.md`](RELEASING.md) for the exact source and GitHub release flow.
+on a machine without the game installed.
 
 ## License
 
 [MIT](LICENSE)
-
-## Implementation notes
-
-The mod uses Harmony patches on `ToolboxHelper`:
-
-- `CreateToolboxWindow` builds a 12-slot, 3-column window instead of the
-  vanilla 9-slot one.
-- `GetUnlockedSlots` / `CanUpgradeToolbox` allow the unlock tag to grow from
-  9 to 12 while still reading old save values unchanged.
-- `CreateToolboxTooltip`, `UpdateToolboxSprite` and `HandleHotkeys` use the
-  expanded slot count and hotkey range.
-- `ToolboxHelper.Bindings` gets three extra `toolbox_slot_N` entries, so the
-  new keys appear in the normal keybind settings and persist through the
-  game's existing keybind save system.
-
-The extra panels are appended after the vanilla nine. The save system stores
-inventory nodes by traversal index, so old saves continue to map items to the
-same first nine slots; the new slots load empty.
-
-See `MODDING.md` for general Probably Stolen modding information.
